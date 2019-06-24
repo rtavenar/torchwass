@@ -60,7 +60,5 @@ def wasserstein(p, u_values, v_values, u_weights=None, v_weights=None):
         v_cdf = v_sorted_cumweights[v_cdf_indices] / v_sorted_cumweights[-1]
 
     # Compute the value of the integral based on the CDFs.
-    # If p = 1 or p = 2, we avoid using np.power, which introduces an overhead
-    # of about 15%.
     return torch.sum(torch.mul(torch.abs(u_cdf - v_cdf),
                                torch.pow(deltas, p)))
